@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+import 'services/storage_service/storage_service.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initialConfig();
   runApp(MyApp());
 }
 
@@ -39,4 +43,8 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+}
+
+Future<void> initialConfig() async {
+  await Get.putAsync(() => StorageService().init());
 }
