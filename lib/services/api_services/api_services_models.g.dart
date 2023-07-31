@@ -23,3 +23,37 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
     <String, dynamic>{
       'token': instance.token,
     };
+
+ListProductResponse _$ListProductResponseFromJson(Map<String, dynamic> json) =>
+    ListProductResponse()
+      ..id = json['id'] as int?
+      ..title = json['title'] as String?
+      ..price = (json['price'] as num?)?.toDouble()
+      ..description = json['description'] as String?
+      ..category = json['category'] as String?
+      ..image = json['image'] as String?
+      ..rating = json['rating'] == null
+          ? null
+          : RateResponse.fromJson(json['rating'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ListProductResponseToJson(
+        ListProductResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'price': instance.price,
+      'description': instance.description,
+      'category': instance.category,
+      'image': instance.image,
+      'rating': instance.rating,
+    };
+
+RateResponse _$RateResponseFromJson(Map<String, dynamic> json) => RateResponse()
+  ..rate = (json['rate'] as num?)?.toDouble()
+  ..count = json['count'] as int?;
+
+Map<String, dynamic> _$RateResponseToJson(RateResponse instance) =>
+    <String, dynamic>{
+      'rate': instance.rate,
+      'count': instance.count,
+    };

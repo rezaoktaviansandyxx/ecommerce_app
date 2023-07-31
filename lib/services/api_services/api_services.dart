@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import 'api_services_models.dart';
+
 class ApiService extends GetConnect {
   @override
   void onInit() {
@@ -33,3 +35,21 @@ class LoginProvider extends ApiService {
     }
   }
 }
+
+class ListProductProvider extends ApiService {
+  var products = <ListProductResponse>[].obs;
+
+  Future<void> getProducts() async {
+    var response = await get('/products');
+    if (response.status.hasError) {
+      return Future.error('400');
+    }
+    // Assuming the API response is a List of products (List<Map<String, dynamic>>).
+    // You can convert the List<Map> to List<ListProductResponse> using the `map` method.
+    var productList = (response.body as List).map((productMap) => ListProductResponse.fromJson(productMap)).toList();
+    
+    // Now, assign the converted list to the `products` variable.
+    products.value = productList;
+  }
+}
+

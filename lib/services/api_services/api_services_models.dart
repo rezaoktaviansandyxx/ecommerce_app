@@ -24,3 +24,32 @@ class LoginResponse {
       _$LoginResponseFromJson(json);
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
 }
+
+@JsonSerializable()
+class ListProductResponse {
+  int? id;
+  String? title;
+  double? price;
+  String? description;
+  String? category;
+  String? image;
+  RateResponse? rating;
+
+  ListProductResponse();
+
+  factory ListProductResponse.fromJson(Map<String, dynamic> json) =>
+      _$ListProductResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$ListProductResponseToJson(this);
+}
+
+@JsonSerializable()
+class RateResponse {
+  double? rate;
+  int? count;
+
+  RateResponse();
+
+  factory RateResponse.fromJson(Map<String, dynamic> json) =>
+      _$RateResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$RateResponseToJson(this);
+}
